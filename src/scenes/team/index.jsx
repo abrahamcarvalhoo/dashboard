@@ -54,7 +54,7 @@ const Team = () => {
           borderTop: "none"
         },
         "& .MuiCheckbox-root": {
-          color: colors.greenAccent[200]
+          color: `${colors.greenAccent[200]} !important`
         }
       }}>
         <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />

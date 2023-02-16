@@ -1,0 +1,55 @@
+$breakpoint-xs: 0 !default;
+$breakpoint-sm: 600px !default;
+$breakpoint-md: 900px !default;
+$breakpoint-lg: 1200px !default;
+$breakpoint-xl: 1536px !default;
+
+$sidebar-width: 270px !default;
+$sidebar-collapsed-width: 80px !default;
+
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+html,
+body,
+main {
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.app {
+  display: flex;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #555;
+}
+
+@media (min-width: $breakpoint-md) {
+  .pro-sidebar {
+    top: 0;
+    left: 0;
+    position: fixed;
+  }
+
+  main {
+    margin-left: $sidebar-width;
+    transition: margin-left, 0.3s;
+
+    &.is-collapsed {
+      margin-left: $sidebar-collapsed-width;
+    }
+  }
+}

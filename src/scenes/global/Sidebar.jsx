@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
-import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '../../theme';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -17,22 +16,22 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Sidebar = ({ isMobile, isCollapsed, handleIsCollapsed, isToggled, handleIsToggled }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  return (
-    <MenuItem active={selected === title} style={{ color: colors.grey[100] }} onClick={() => setSelected(title)} icon={icon}>
-      <Typography>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
-  )
-}
-
-const Sidebar = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  const Item = ({ title, to, icon, selected, setSelected }) => {
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+
+    return (
+      <MenuItem active={selected === title} style={{ color: colors.grey[100] }} onClick={() => {setSelected(title); isMobile && handleIsToggled()}} icon={icon}>
+        <Typography>{title}</Typography>
+        <Link to={to} />
+      </MenuItem>
+    )
+  }
 
   return (
     <Box sx ={{
@@ -52,27 +51,26 @@ const Sidebar = () => {
         color: "#6870fa !important"
       }
     }}>
-      <ProSidebar collapsed={isCollapsed}>
+      <ProSidebar breakPoint="md" collapsed={isCollapsed} toggled={isToggled} onToggle={() => handleIsToggled()}>
         <Menu iconShape="square">
           <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
+            onClick={() => isMobile ? handleIsToggled() : handleIsCollapsed()}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{ margin: "10px 0 20px 0", color: colors.grey[100] }}>
             {!isCollapsed && (
               <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Typography variant="h4" color={colors.grey[100]} textTransform="uppercase">React Admin</Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                <IconButton>
                   <MenuOutlinedIcon />
                 </IconButton>
               </Box>
             )}
           </MenuItem>
 
-          {!isCollapsed && (
+          {!isCollapsed && !isMobile && (
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
-                <img alt="profile-user" width="100px" height="100px" src={`../../assets/avatar.png`} style={{ borderRadius: "50%" }}
-                />
+                <img alt="profile-user" width="100px" height="100px" src={`../../assets/avatar.png`} style={{ borderRadius: "50%" }} />
               </Box>
 
               <Box textAlign="center">

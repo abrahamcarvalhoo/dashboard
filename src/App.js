@@ -11,10 +11,10 @@ import Invoices from "./scenes/invoices";
 import Form from "./scenes/form";
 import Calendar from "./scenes/calendar";
 import FAQ from "./scenes/faq";
-// import Bar from "./scenes/bar";
-// import Pie from "./scenes/pie";
-// import Line from "./scenes/line";
-// import Geography from "./scenes/geography";
+import Bar from "./scenes/bar";
+import Pie from "./scenes/pie";
+import Line from "./scenes/line";
+import Geography from "./scenes/geography";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -42,7 +42,7 @@ function App() {
         isToggled={isToggled}
         handleIsToggled={handleIsToggled} />
 
-        <main className={isCollapsed && 'is-collapsed'}>
+        <main className={isCollapsed ? 'is-collapsed' : undefined}>
           <Topbar isMobile={isMobile} isToggled={isToggled} handleIsToggled={handleIsToggled} />
 
           <Routes>
@@ -53,10 +53,10 @@ function App() {
             <Route path="/form" element={<Form />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/faq" element={<FAQ />} />
-            {/* <Route path="/bar" element={<Bar />} /> */}
-            {/* <Route path="/pie" element={<Pie />} /> */}
-            {/* <Route path="/line" element={<Line />} /> */}
-            {/* <Route path="/geography" element={<Geography />} /> */}
+            <Route path="/bar" element={<Bar />} />
+            <Route path="/pie" element={<Pie />} />
+            <Route path="/line" element={<Line />} />
+            <Route path="/geography" element={<Geography />} />
           </Routes>
         </main>
       </div>

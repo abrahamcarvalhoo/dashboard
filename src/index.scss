@@ -17,6 +17,10 @@ main {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+#geoMap svg {
+  width: 100%;
+}
+
 .app {
   display: flex;
 }

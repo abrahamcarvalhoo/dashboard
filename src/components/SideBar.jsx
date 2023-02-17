@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { tokens } from '../../theme';
+import { tokens } from '../theme';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -16,7 +16,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Sidebar = ({ isMobile, isCollapsed, handleIsCollapsed, isToggled, handleIsToggled }) => {
+const SideBar = ({ isMobile, isCollapsed, handleIsCollapsed, isToggled, handleIsToggled }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [selected, setSelected] = useState("Dashboard");
@@ -168,4 +168,4 @@ const Sidebar = ({ isMobile, isCollapsed, handleIsCollapsed, isToggled, handleIs
   );
 }
 
-export default Sidebar;
+export default SideBar;

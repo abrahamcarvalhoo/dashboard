@@ -2,19 +2,19 @@ import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
-import Topbar from "./scenes/global/Topbar";
-import Sidebar from "./scenes/global/Sidebar";
-import Dashboard from "./scenes/dashboard";
-import Team from "./scenes/team";
-import Contacts from "./scenes/contacts";
-import Invoices from "./scenes/invoices";
-import Form from "./scenes/form";
-import Calendar from "./scenes/calendar";
-import FAQ from "./scenes/faq";
-import Bar from "./scenes/bar";
-import Pie from "./scenes/pie";
-import Line from "./scenes/line";
-import Geography from "./scenes/geography";
+import TopBar from "./components/TopBar";
+import SideBar from "./components/SideBar";
+import Dashboard from "./pages/dashboard";
+import Team from "./pages/team";
+import Contacts from "./pages/contacts";
+import Invoices from "./pages/invoices";
+import Form from "./pages/form";
+import Calendar from "./pages/calendar";
+import FAQ from "./pages/faq";
+import Bar from "./pages/bar";
+import Pie from "./pages/pie";
+import Line from "./pages/line";
+import Geography from "./pages/geography";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -35,7 +35,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className="app">
-        <Sidebar
+        <SideBar
         isMobile={isMobile}
         isCollapsed={isCollapsed}
         handleIsCollapsed={handleIsCollapsed}
@@ -43,7 +43,7 @@ function App() {
         handleIsToggled={handleIsToggled} />
 
         <main className={isCollapsed ? 'is-collapsed' : undefined}>
-          <Topbar isMobile={isMobile} isToggled={isToggled} handleIsToggled={handleIsToggled} />
+          <TopBar isMobile={isMobile} isToggled={isToggled} handleIsToggled={handleIsToggled} />
 
           <Routes>
             <Route path="/" element={<Dashboard />} />
